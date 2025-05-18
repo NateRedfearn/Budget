@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Budget Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Budget Tracker</h1>
+  <div class="container">
+    <h1>Monthly Budget Tracker</h1>
 
-  <input type="file" id="csvFileInput" accept=".csv" />
-  <button onclick="downloadCSV()">Export to CSV</button>
+    <section class="income-section">
+      <label for="income">Monthly Income:</label>
+      <input type="number" id="income" placeholder="e.g. 3000" />
+      <button onclick="updateIncome()">Set Income</button>
+    </section>
 
-  <table id="budgetTable" border="1">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Amount</th>
-        <th>Category</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <section class="summary">
+      <p>Total Income: $<span id="totalIncome">0</span></p>
+      <p>Total Expenses: $<span id="totalExpenses">0</span></p>
+      <p class="balance">Remaining: $<span id="remaining">0</span></p>
+    </section>
 
-  <h3>Add a New Entry</h3>
-  <input type="date" id="date">
-  <input type="text" id="description" placeholder="Description">
-  <input type="number" id="amount" placeholder="Amount">
-  <input type="text" id="category" placeholder="Category">
-  <button onclick="addEntry()">Add Entry</button>
+    <section class="add-expense">
+      <h2>Add Expense</h2>
+      <input type="date" id="expenseDate">
+      <input type="text" id="expenseDesc" placeholder="Description">
+      <input type="number" id="expenseAmount" placeholder="Amount">
+      <input type="text" id="expenseCategory" placeholder="Category">
+      <button onclick="addExpense()">Add</button>
+    </section>
 
-  <script src="budget.js"></script>
+    <section class="controls">
+      <input type="file" id="csvFileInput" accept=".csv" />
+      <button onclick="downloadCSV()">Export Expenses to CSV</button>
+    </section>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody id="expenseTableBody"></tbody>
+    </table>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
